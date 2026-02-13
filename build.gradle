@@ -1,0 +1,33 @@
+plugins {
+    id 'java'
+}
+
+group = 'com.example'
+version = '1.0.0'
+
+def javaVersion = JavaVersion.VERSION_1_8
+sourceCompatibility = javaVersion
+targetCompatibility = javaVersion
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.10.2'
+}
+
+test {
+    useJUnitPlatform()
+}
+
+// Intentionally-broken Java files are included in src/main/java,
+// but excluded from compilation so the project builds and tests run.
+sourceSets {
+    main {
+        java {
+            exclude 'BrokenSyntax.java'
+            exclude 'BrokenType.java'
+        }
+    }
+}
